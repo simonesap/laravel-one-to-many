@@ -18,8 +18,8 @@
 
             </textarea>
 
-            <label for="slug">Slug</label>
-            <input type="text" value="" name="slug">
+            {{-- <label for="slug">Slug</label>
+            <input type="text" value="" name="slug"> --}}
 
             <button type="submit" src="{{route('admin.posts.store')}}">
                 Submit
