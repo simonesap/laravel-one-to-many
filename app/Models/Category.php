@@ -15,5 +15,9 @@ class Category extends Model
         'label','color'
     ];
 
+    public function Post() {
+        return $this->hasMany('App\Models\Post');
+    }
+
 }
 

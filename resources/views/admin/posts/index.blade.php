@@ -23,6 +23,7 @@
               <tr>
                 <th>image</th>
                 <th>title</th>
+                <th>category</th>
                 <th>content</th>
                 <th>slug</th>
               </tr>
@@ -33,6 +34,8 @@
                     <img src="{{ $data->image}}" alt="">
                 </td>
                 <td>{{ $data->title}}</td>
+                <td>{{ $data->category->label}}</td>
+                <td>{{ $data->category->color}}</td>
                 <td>{{ $data->content}}</td>
                 <td>{{ $data->slug}}</td>
                 <td>

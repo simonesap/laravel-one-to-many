@@ -7,3 +7,5 @@
         ['label'=>'Paesaggi', 'color'=>'light'],
         ['label'=>'Finanza', 'color'=>'info'],
     ];
+
+?>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
 
 use Illuminate\Support\Str;
 
@@ -18,8 +19,9 @@ class PostController extends Controller
     public function index()
     {
         $datas = Post::all();
+        $categories = Category::all();
 
-        return view('admin.posts.index', compact('datas'));
+        return view('admin.posts.index', compact('datas','categories'));
     }
 
     /**
