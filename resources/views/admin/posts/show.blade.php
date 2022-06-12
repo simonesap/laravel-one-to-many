@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div>
+    <div class="container">
         <table class="table">
             <thead>
                 <tr>
@@ -21,14 +21,16 @@
                     <td>{{ $post->content}}</td>
                     <td>{{ $post->slug}}</td>
                     <td>
-                        <a href="{{route('admin.posts.edit', $post->id)}}">
+                        <a class="badge badge-pill p-3 bg-success text-white" href="{{route('admin.posts.edit', $post->id)}}">
                             Modify
                         </a>
+                    </td>
+                    <td>
                         <form action="{{ route('admin.posts.destroy', $post->id)}}" method="POST">
                             @method('DELETE')
                             @csrf
 
-                            <button class="delete-form" type="submit" src="{{ route('admin.posts.destroy', $post->id)}}" class="">Delete</button>
+                            <button class="delete-form badge badge-pill p-3 bg-danger text-white" type="submit" src="{{ route('admin.posts.destroy', $post->id)}}" class="">Delete</button>
 
                         </form>
                     </td>

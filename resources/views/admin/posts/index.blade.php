@@ -2,17 +2,17 @@
 
 @section('content')
 
-    <div>
-        <div>
-            @if ('message')
-                <div class="alert alert-success">
-                    {{session('message')}}
-                </div>
-            @endif
-        </div>
+    <div class="container">
+
+        @if ('message')
+            <div class="alert alert-success">
+                {{session('message')}}
+            </div>
+        @endif
+
 
         <div>
-            <a href="{{route('admin.posts.create')}}">
+            <a class="badge badge-pill p-3 bg-success text-white" href="{{route('admin.posts.create')}}">
                 Create Post
             </a>
         </div>
@@ -34,17 +34,22 @@
                     <img src="{{ $data->image}}" alt="">
                 </td>
                 <td>{{ $data->title}}</td>
-                <td>{{ $data->category->label}}</td>
-                <td>{{ $data->category->color}}</td>
+                <td>
+                    @if($data->category)
+                        <span class="badge badge-pill badge-{{$data->category->color}}">
+                            {{$data->category->label}}
+                        </span>
+                    @endif
+                </td>
                 <td>{{ $data->content}}</td>
                 <td>{{ $data->slug}}</td>
                 <td>
-                    <a href="{{route('admin.posts.show', $data->id)}}">
+                    <a class="badge badge-pill p-3 bg-primary text-white" href="{{route('admin.posts.show', $data->id)}}">
                       View
                   </a>
                 </td>
                 <td>
-                  <a href="{{route('admin.posts.edit', $data->id)}}">
+                  <a class="badge badge-pill p-3 bg-success text-white" href="{{route('admin.posts.edit', $data->id)}}">
                       Modify
                   </a>
                 </td>

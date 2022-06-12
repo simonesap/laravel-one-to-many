@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div>
+    <div class="container">
         <form style="display: flex; flex-direction: column; width: 80%; margin: 0 auto;"
               action="{{ route('admin.posts.update', $post->id)}}" method="POST">
               @method('PUT')
@@ -22,8 +22,8 @@
             {{-- <label for="slug">Slug</label>
             <input type="text" value="{{ old('slug', $post->slug)}}" name="slug" required> --}}
 
-            <button type="submit" src="{{route('admin.posts.update', $post->id)}}">
-                Submit
+            <button class="btn btn-success w-25 b-rounded-3" style="margin: 10px auto;" type="submit" src="{{route('admin.posts.update', $post->id)}}">
+                Modify
             </button>
         </form>
     </div>

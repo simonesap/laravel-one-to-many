@@ -31,7 +31,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -107,7 +109,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title','content','image','slug'
+            'title','content','image'
         ]);
 
         $data = $request->all();
@@ -117,7 +119,7 @@ class PostController extends Controller
 
         $post->update($data);
 
-        return redirect()->route('admin.posts.index', $new_post)->with('message', "Hai aggiornato con successo $new_post->title");
+        return redirect()->route('admin.posts.index', $post)->with('message', "Hai aggiornato con successo $post->title");
 
     }
 

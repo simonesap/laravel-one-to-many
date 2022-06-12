@@ -13,6 +13,16 @@
             <label for="title">Title</label>
             <input type="text" value="" name="title">
 
+            <div>
+                <label for="category">Category</label>
+                <select name="category_id" id="category">
+                    <option value="">Nessuna categoria</option>
+                    @foreach($categories as $category)
+                        <option value="{{$category->id}}">{{$category->label}}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <label for="content">Content</label>
             <textarea name="content" id="content" cols="30" rows="10">
 
@@ -21,8 +31,8 @@
             {{-- <label for="slug">Slug</label>
             <input type="text" value="" name="slug"> --}}
 
-            <button type="submit" src="{{route('admin.posts.store')}}">
-                Submit
+            <button class="btn btn-success w-25 b-rounded-3" style="margin: 10px auto;" type="submit" src="{{route('admin.posts.store')}}">
+                Create
             </button>
         </form>
     </div>
