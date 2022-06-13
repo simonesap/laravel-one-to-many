@@ -8,6 +8,7 @@
                 <tr>
                     <th>image</th>
                     <th>title</th>
+                    <th>category</th>
                     <th>content</th>
                     <th>slug</th>
                 </tr>
@@ -18,6 +19,15 @@
                         <img src="{{ $post->image}}" alt="">
                     </td>
                     <td>{{ $post->title}}</td>
+                    <td>
+                        @if($post->category)
+                            <span class="badge badge-pill badge-{{$post->category->color}}">
+                                {{$post->category->label}}
+                            </span>
+                        @else
+                            Category null
+                        @endif
+                    </td>
                     <td>{{ $post->content}}</td>
                     <td>{{ $post->slug}}</td>
                     <td>

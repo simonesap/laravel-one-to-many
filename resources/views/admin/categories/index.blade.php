@@ -12,44 +12,30 @@
 
 
         <div>
-            <a class="badge badge-pill p-3 bg-success text-white" href="{{route('admin.posts.create')}}">
-                Create Post
+            <a class="badge badge-pill p-3 bg-success text-white" href="{{route('admin.categories.create')}}">
+                Create Category
             </a>
         </div>
 
-        @forelse ($datas as $data )
+        @forelse ($categories as $category )
         <table class="table">
             <thead>
               <tr>
-                <th>image</th>
-                <th>title</th>
-                <th>category</th>
-                <th>content</th>
-                <th>slug</th>
+                <th>label</th>
+                <th>color</th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td>{{ $category->label}}</td>
+                <td>{{ $category->color}}</td>
                 <td>
-                    <img src="{{ $data->image}}" alt="">
-                </td>
-                <td>{{ $data->title}}</td>
-                <td>
-                    @if($data->category)
-                        <span class="badge badge-pill badge-{{$data->category->color}}">
-                            {{$data->category->label}}
-                        </span>
-                    @endif
-                </td>
-                <td>{{ $data->content}}</td>
-                <td>{{ $data->slug}}</td>
-                <td>
-                    <a class="badge badge-pill p-3 bg-primary text-white" href="{{route('admin.posts.show', $data->id)}}">
+                    <a class="badge badge-pill p-3 bg-primary text-white" href="{{route('admin.categories.show', $category->id)}}">
                       View
                   </a>
                 </td>
                 <td>
-                  <a class="badge badge-pill p-3 bg-success text-white" href="{{route('admin.posts.edit', $data->id)}}">
+                  <a class="badge badge-pill p-3 bg-success text-white" href="{{route('admin.categories.edit', $category->id)}}">
                       Modify
                   </a>
                 </td>
@@ -61,7 +47,7 @@
                         <button class="delete-form" type="submit" src="{{ route('admin.posts.destroy', $data->id)}}" class="">Delete</button>
 
                     </form> --}}
-                    @include('includes.delete-btn-post-index')
+                    @include('includes.delete-category')
                 </td>
               </tr>
             </tbody>

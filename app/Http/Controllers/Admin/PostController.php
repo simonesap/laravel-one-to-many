@@ -19,7 +19,10 @@ class PostController extends Controller
     public function index()
     {
         $datas = Post::all();
+        // $datas = Post::orderBy('updated_at', 'DESC')->paginate(4)->get();
+        $datas = Post::orderBy('updated_at', 'DESC')->get();
         $categories = Category::all();
+
 
         return view('admin.posts.index', compact('datas','categories'));
     }
@@ -85,6 +88,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+
+        // $categories = Category::all();
+
         return view('admin.posts.show', compact('post'));
     }
 
@@ -96,7 +102,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+
+        $categories = Category::all();
+
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**

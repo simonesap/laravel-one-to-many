@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -14,7 +15,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+
+        $categories = Category::all();
+
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -24,7 +28,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+
+        return view('admin.categories.create', compact('categories'));
     }
 
     /**
@@ -35,7 +41,27 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'label'
+        ]);
+
+        $request->validate([
+            'color'
+        ]);
+
+
+        $categories = $request->all();
+
+        $category = new Category();
+
+        $category->fill($categories);
+
+        $category->save();
+
+        return redirect()->route('admin.categories.index', compact('category'));
+
+
     }
 
     /**
@@ -44,9 +70,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        //
+        return view('admin.categories.show', compact('category'));
     }
 
     /**
@@ -55,9 +81,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $categories)
     {
-        //
+
+        $categories = Category::all();
+
+        return view('admin.categories.edit', compact('categories'));
     }
 
     /**
@@ -67,10 +96,21 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $categories)
     {
-        //
+        $request->validate([
+            'label','color'
+        ]);
+
+        $categories = $request->all();
+
+
+        $category->update($categories);
+
+        return redirect()->route('admin.categories.index', $category)->with('message', "Hai aggiornato con successo $category->label");
+
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -78,8 +118,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()->route('admin.categories.index', compact('category'))->with('message', "Hai eliminato con successo $category->label");
     }
 }
